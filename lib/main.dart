@@ -73,53 +73,56 @@ class _IronKeyScreenState extends State<IronKeyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            //Propriedade que vai espaçar os elementos
-            Expanded(
-              child: Column(
-                children: [
-                  ClipOval(
-                    child: SizedBox(
-                      width: 150,
-                      height: 150,
-                      child: Image.asset(
-                        "assets/images/ironman.jpg",
-                        fit: BoxFit.cover,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              //Propriedade que vai espaçar os elementos
+              Expanded(
+                child: Column(
+                  children: [
+                    ClipOval(
+                      child: SizedBox(
+                        width: 150,
+                        height: 150,
+                        child: Image.asset(
+                          "assets/images/ironman.jpg",
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 16),
-                  Text(
-                    "Sua senha segura",
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
-                  ),
-                  SizedBox(height: 160),
-                  TextField(
-                    controller: _passwordController,
-                    maxLength: 12,
-                    decoration: InputDecoration(
-                      labelText: "Password",
-                      border: OutlineInputBorder(),
-                      prefix: Icon(Icons.lock),
-                      suffix: _passwordController.text.isNotEmpty
-                          ? IconButton(onPressed: () {
-                            copyPassword(_passwordController.text)
-                          }, icon: Icon(Icons.copy))
-                          : null,
+                    SizedBox(height: 16),
+                    Text(
+                      "Sua senha segura",
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 160),
+                    TextField(
+                      controller: _passwordController,
+                      maxLength: 12,
+                      decoration: InputDecoration(
+                        labelText: "Password",
+                        border: OutlineInputBorder(),
+                        prefix: Icon(Icons.lock),
+                        suffix: _passwordController.text.isNotEmpty
+                            ? IconButton(onPressed: () {
+                              copyPassword(_passwordController.text);
+                            }, icon: Icon(Icons.copy))
+                            : null,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: FilledButton(onPressed: generatePassword , child: Text("Gerar senha")),
-            ),
-          ],
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(onPressed: generatePassword , child: Text("Gerar senha")),
+              ),
+            ],
+          ),
         ),
       ),
     );
